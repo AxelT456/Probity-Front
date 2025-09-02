@@ -1,0 +1,13 @@
+import axios from 'axios'
+
+// Creamos una "instancia" de Axios con la configuración base.
+const apiClient = axios.create({
+  baseURL: 'http://127.0.0.1:8000/api/formulas',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+
+export const calculateBinomial = (params) => {
+  return apiClient.post('/binomial/', params)
+}
