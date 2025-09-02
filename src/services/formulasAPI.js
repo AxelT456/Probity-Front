@@ -11,3 +11,7 @@ const apiClient = axios.create({
 export const calculateBinomial = (params) => {
   return apiClient.post('/binomial/', params)
 }
+
+export const calculateBernoulli = (params) => {
+  return apiClient.post('/bernoulli/', params)
+}
