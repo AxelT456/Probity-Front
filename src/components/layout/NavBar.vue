@@ -6,6 +6,7 @@ const navItems = ref([
   { name: 'Inicio', path: '/' },
   { name: 'Binomial', path: '/binomial' },
   { name: 'Bernoulli', path: '/bernoulli' },
+  { name: 'Normal', path: '/normal-standard' },
   // Aquí agregaremos más calculadoras en el futuro
   // { name: 'Normal', path: '/normal' },
 ])

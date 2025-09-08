@@ -15,3 +15,7 @@ export const calculateBinomial = (params) => {
 export const calculateBernoulli = (params) => {
   return apiClient.post('/bernoulli/', params)
 }
+
+export const calculateNormalStandard = (params) => {
+  return apiClient.post('/normal-standard/', params)
+}
