@@ -54,18 +54,18 @@ async function handleCalculate(formData) {
             <BernoulliChart
               v-if="apiResult && apiResult.graph_data"
               :chart-data="{
-                labels: apiResult.graph_data.categories,
+                title: apiResult.graph_data.title,
+                x_label: 'Categoría',
+                y_label: 'Frecuencia',
                 datasets: [
                   {
                     label: 'Conteo',
-                    data: apiResult.graph_data.dataset,
+                    x: apiResult.graph_data.categories,
+                    y: apiResult.graph_data.dataset,
                     backgroundColor: ['#4ade80', '#f87171'],
                     borderColor: ['#16a34a', '#b91c1c'],
                   },
                 ],
-                title: apiResult.graph_data.title,
-                x_label: 'Categoría',
-                y_label: 'Frecuencia',
               }"
             />
             <div

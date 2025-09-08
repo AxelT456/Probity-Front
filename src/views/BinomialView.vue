@@ -100,7 +100,26 @@ async function handleCalculate(formData) {
           <CardContent class="pt-6">
             <BinomialChart
               v-if="apiResult && apiResult.graph_data"
-              :chart-data="apiResult.graph_data"
+              :chart-data="{
+                ...apiResult.graph_data,
+                datasets: apiResult.graph_data.datasets.map(ds => {
+                  const xArr = Array.isArray(ds.x) ? ds.x : [];
+                  let yArr = [];
+                  if (Array.isArray(ds.y)) {
+                    yArr = ds.y;
+                  } else if (typeof ds.y === 'object' && ds.y !== null) {
+                    yArr = xArr.map(xi => ds.y[xi] ?? 0);
+                  }
+                  return {
+                    label: ds.label || 'Datos',
+                    type: ds.type || 'bar',
+                    x: xArr,
+                    y: yArr,
+                    backgroundColor: ds.backgroundColor || 'skyblue',
+                    borderColor: ds.borderColor || 'skyblue',
+                  };
+                })
+              }"
             />
             <div v-else class="text-center text-gray-500 h-full flex items-center justify-center">
               <p>Ingresa los datos y presiona "Calcular" para generar el gráfico.</p>

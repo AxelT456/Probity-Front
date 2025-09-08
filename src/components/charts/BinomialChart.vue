@@ -33,29 +33,32 @@ const props = defineProps({
 })
 
 const chartDataForRender = computed(() => {
-  const pmfData = props.chartData.datasets[0] // Datos de las barras (PMF)
-  const cdfData = props.chartData.datasets[1] // Datos de la línea (CDF)
-
+  const pmfData = props.chartData.datasets[0]
+  const cdfData = props.chartData.datasets[1]
+  const datasets = []
+  if (pmfData) {
+    datasets.push({
+      type: pmfData.type || 'bar',
+      label: pmfData.label || 'Datos',
+      data: pmfData.y,
+      backgroundColor: pmfData.backgroundColor || 'skyblue',
+      borderColor: pmfData.borderColor || 'skyblue',
+      yAxisID: 'y-pmf',
+    })
+  }
+  if (cdfData && cdfData.y) {
+    datasets.push({
+      type: cdfData.type || 'line',
+      label: cdfData.label || 'CDF',
+      data: cdfData.y,
+      backgroundColor: cdfData.backgroundColor || 'red',
+      borderColor: cdfData.borderColor || 'red',
+      yAxisID: 'y-cdf',
+    })
+  }
   return {
-    labels: pmfData.x, // Eje X (Número de Éxitos)
-    datasets: [
-      {
-        type: 'bar', // Tipo de gráfico: barras
-        label: pmfData.label,
-        data: pmfData.y,
-        backgroundColor: 'skyblue',
-        borderColor: 'skyblue',
-        yAxisID: 'y-pmf', // Asignamos al eje Y izquierdo
-      },
-      {
-        type: 'line', // Tipo de gráfico: línea
-        label: cdfData.label,
-        data: cdfData.y,
-        backgroundColor: 'red',
-        borderColor: 'red',
-        yAxisID: 'y-cdf', // Asignamos al eje Y derecho
-      },
-    ],
+    labels: pmfData?.x || [],
+    datasets,
   }
 })
 
