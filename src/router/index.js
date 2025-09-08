@@ -22,6 +22,11 @@ const router = createRouter({
       name: 'bernoulli',
       component: BernoulliView,
     },
+    {
+      path: '/multinomial',
+      name: 'multinomial',
+      component: () => import('@/views/MultinomialView.vue'),
+    },
   ],
 })
 
