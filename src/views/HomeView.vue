@@ -15,6 +15,18 @@
       >
         Ir a Binomial
       </RouterLink>
+      <RouterLink
+        to="/bernoulli"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+      >
+        Ir a Bernoulli
+      </RouterLink>
+      <RouterLink
+        to="/multinomial"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+      >
+        Ir a Multinomial
+      </RouterLink>
     </div>
   </div>
 </template>

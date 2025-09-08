@@ -1,3 +1,6 @@
+export const calculateMultinomial = (params) => {
+  return apiClient.post('/multinomial/', params)
+}
 import axios from 'axios'
 
 // Creamos una "instancia" de Axios con la configuración base.
@@ -10,4 +13,8 @@ const apiClient = axios.create({
 
 export const calculateBinomial = (params) => {
   return apiClient.post('/binomial/', params)
+}
+
+export const calculateBernoulli = (params) => {
+  return apiClient.post('/bernoulli/', params)
 }

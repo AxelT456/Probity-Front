@@ -5,6 +5,8 @@ import { ref } from 'vue'
 const navItems = ref([
   { name: 'Inicio', path: '/' },
   { name: 'Binomial', path: '/binomial' },
+  { name: 'Bernoulli', path: '/bernoulli' },
+  { name: 'Multinomial', path: '/multinomial' },
   // Aquí agregaremos más calculadoras en el futuro
   // { name: 'Normal', path: '/normal' },
 ])
