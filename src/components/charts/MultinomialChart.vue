@@ -1,39 +1,47 @@
-<script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+<script setup>
+import { computed } from 'vue'
 import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
-const props = defineProps({ chartData: { type: Object, required: true } })
-
-const chartDataForRender = computed(() => {
-  // Espera que la API devuelva un objeto con labels y datasets
-  return {
-    labels: props.chartData.labels,
-    datasets: props.chartData.datasets,
-  }
+const props = defineProps({
+  chartData: { type: Object, required: true },
+  chartOptions: { type: Object, default: () => ({}) },
 })
 
-const chartOptions = computed(() => ({
+const dataForRender = computed(() => ({
+  labels: props.chartData.labels,
+  datasets: [
+    {
+      backgroundColor: '#60a5fa',
+      ...props.chartData.datasets[0],
+    },
+  ],
+}))
+
+const optionsForRender = computed(() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
-    legend: { position: 'top' },
-    title: { display: true, text: props.chartData.title },
+    legend: {
+      display: false,
+    },
   },
-  scales: {
-    x: { title: { display: true, text: props.chartData.x_label } },
-    y: { beginAtZero: true, title: { display: true, text: props.chartData.y_label } },
-  },
+  ...props.chartOptions,
 }))
-
-const chartRef = ref(null)
-watch(() => props.chartData, () => { if (chartRef.value) chartRef.value.update() })
 </script>
 
 <template>
   <div class="relative h-96">
-    <Bar v-if="chartData && chartData.datasets" :data="chartDataForRender" :options="chartOptions" ref="chartRef"/>
+    <Bar :data="dataForRender" :options="optionsForRender" />
   </div>
 </template>
