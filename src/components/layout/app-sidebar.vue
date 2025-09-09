@@ -57,6 +57,10 @@ import { GalleryVerticalEnd } from 'lucide-vue-next'
 const data = {
   navMain: [
     {
+    title:"Home",
+    url: "/"
+    },
+    {
       title: "Binomial",
       url: "/binomial",
     },

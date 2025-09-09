@@ -45,7 +45,7 @@
       <!-- Método de Grebs -->
       <div class="bg-zinc-800 p-6 rounded-xl shadow-lg hover:bg-zinc-700 cursor-pointer transition-colors border border-zinc-700">
         <div class="text-orange-400 text-3xl mb-3">ƒ</div>
-        <h2 class="text-lg font-semibold mb-2">Método de Grebs</h2>
+        <h2 class="text-lg font-semibold mb-2">Método de Gibbs</h2>
         <p class="text-sm text-zinc-400">Algoritmos de estimación avanzada</p>
       </div>
 
