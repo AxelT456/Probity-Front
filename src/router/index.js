@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import BinomialView from '../views/BinomialView.vue'
 import BernoulliView from '../views/BernoulliView.vue'
 import NormalStandardView from '../views/NormalStandardView.vue'
+import MultinomialView from '@/views/MultinomialView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,7 +26,7 @@ const router = createRouter({
     {
       path: '/multinomial',
       name: 'multinomial',
-      component: () => import('@/views/MultinomialView.vue'),
+      component: MultinomialView,
     },
     {
       path: '/normal-standard',
