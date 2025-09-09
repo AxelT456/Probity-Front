@@ -1,3 +1,4 @@
+
 <script setup>
 import { ref } from 'vue'
 import { Button } from '@/components/ui/button'
@@ -17,12 +18,17 @@ const apiResult = ref(null)
 const isLoading = ref(false)
 const apiError = ref(null)
 
+function safeFormat(value) {
+  return typeof value === 'number' ? value.toFixed(4) : 'N/A'
+}
+
 async function handleCalculate(formData) {
   isLoading.value = true
   apiResult.value = null
   apiError.value = null
   try {
     const response = await calculateNormalStandard(formData)
+console.log("Respuesta cruda de la API:", response.data)
     apiResult.value = response.data
   } catch (error) {
     apiError.value = error
@@ -60,24 +66,24 @@ async function handleCalculate(formData) {
           <CardHeader>
             <CardTitle>Resultados Numéricos</CardTitle>
             <CardDescription v-if="apiResult"
-              >Para Z = {{ apiResult.metadata.parameters.z_score }}</CardDescription
+              >Para Z = {{ apiResult?.metadata?.parameters?.z_score ?? 'N/A' }}</CardDescription
             >
           </CardHeader>
           <CardContent class="space-y-4">
             <p v-if="isLoading" class="text-center">Calculando...</p>
             <p v-if="apiError" class="text-center text-red-500">Error al calcular.</p>
-            <div v-if="apiResult" class="text-sm space-y-2">
+            <div v-if="apiResult?.result" class="text-sm space-y-2">
               <div class="flex justify-between">
                 <span class="text-muted-foreground">Valor PDF:</span>
-                <span class="font-mono font-semibold">{{
-                  apiResult.result.pdf_at_z.toFixed(4)
-                }}</span>
+                <span class="font-mono font-semibold">
+                  {{ safeFormat(apiResult.result.pdf_at_z) }}
+                </span>
               </div>
               <div class="flex justify-between">
                 <span class="text-muted-foreground">Valor CDF (Área):</span>
-                <span class="font-mono font-semibold">{{
-                  apiResult.result.cdf_at_z.toFixed(4)
-                }}</span>
+                <span class="font-mono font-semibold">
+                  {{ safeFormat(apiResult.result.cdf_at_z) }}
+                </span>
               </div>
             </div>
           </CardContent>
@@ -93,7 +99,7 @@ async function handleCalculate(formData) {
             <div v-if="isLoading" class="text-center">Cargando gráfico... ⏳</div>
             <div v-if="apiError" class="text-center text-red-500">Error al cargar los datos.</div>
             <NormalStandardChart
-              v-if="apiResult && apiResult.graph_data"
+              v-if="apiResult?.graph_data"
               :chart-data="apiResult.graph_data"
             />
             <div v-else class="text-center text-gray-500 h-full flex items-center justify-center">
@@ -105,3 +111,4 @@ async function handleCalculate(formData) {
     </div>
   </div>
 </template>
+

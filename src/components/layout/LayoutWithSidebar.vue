@@ -1,12 +1,12 @@
 LayoutWithSidebar.vue
 
 <template>
-  <div class="flex min-h-screen bg-zinc-900 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  <div class="flex min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
     <!-- Sidebar -->
     <AppSidebar />
 
 
-      <main class="flex-1 container mx-auto py-8 px-4 bg-zinc-900">
+      <main class="flex-1 container mx-auto py-8 px-4">
         <slot />
       </main>
   </div>

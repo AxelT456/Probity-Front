@@ -3,7 +3,7 @@ app-sidebar.vue
 <template>
   <div class="flex min-h-screen">
     <!-- Sidebar -->
-    <aside class="w-64 bg-sidebar bg-neutral-900">
+    <aside class="w-64 bg-sidebar bg-stone-900">
       <div class="p-4  ">
         <div class="flex items-center gap-3">
           <div class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">

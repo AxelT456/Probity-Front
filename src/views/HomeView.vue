@@ -1,15 +1,14 @@
-HomeView.vue
 
 <template>
-  <div class="min-h-screen bg-zinc-900 text-white p-6">
+  <div class="min-h-screen bg-zinc-100 text-white p-6">
     <div class="mb-8">
-      <h1 class="text-3xl font-bold mb-2">Welcome, CarlosIbarra</h1>
+      <h1 class="text-3xl font-bold mb-2 text-black">Welcome, CarlosIbarra</h1>
       <p class="text-zinc-400">Selecciona una herramienta para comenzar</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <!-- Distribución Binomial -->
-      <div class="bg-zinc-800 p-6 rounded-xl shadow-lg hover:bg-zinc-700 cursor-pointer transition-colors border border-zinc-700">
+      <div class="bg-zinc-600 p-6 rounded-xl shadow-lg hover:bg-zinc-700 cursor-pointer transition-colors border border-zinc-700">
         <div class="text-blue-400 text-3xl mb-3">∑</div>
         <h2 class="text-lg font-semibold mb-2">Distribución Binomial</h2>
         <p class="text-sm text-zinc-400">Calcular probabilidades y valores esperados</p>
@@ -37,7 +36,7 @@ HomeView.vue
       </div>
 
       <!-- Simulaciones Monte Carlo -->
-      <div class="bg-zinc-800 p-6 rounded-xl shadow-lg hover:bg-zinc-700 cursor-pointer transition-colors border border-zinc-700">
+      <div class="bg-zinc-600 p-6 rounded-xl shadow-lg hover:bg-zinc-700 cursor-pointer transition-colors border border-zinc-700">
         <div class="text-cyan-400 text-3xl mb-3">🎲</div>
         <h2 class="text-lg font-semibold mb-2">Simulaciones Monte Carlo</h2>
         <p class="text-sm text-zinc-400">Métodos de simulación estadística</p>
@@ -51,7 +50,7 @@ HomeView.vue
       </div>
 
       <!-- Calculadora de Probabilidad -->
-      <div class="bg-zinc-800 p-6 rounded-xl shadow-lg hover:bg-zinc-700 cursor-pointer transition-colors border border-zinc-700">
+      <div class="bg-zinc-600 p-6 rounded-xl shadow-lg hover:bg-zinc-700 cursor-pointer transition-colors border border-zinc-700">
         <div class="text-pink-400 text-3xl mb-3">📊</div>
         <h2 class="text-lg font-semibold mb-2">Calculadora Avanzada</h2>
         <p class="text-sm text-zinc-400">Operaciones estadísticas complejas</p>
@@ -72,7 +71,7 @@ HomeView.vue
       </div>
 
       <!-- Intervalos de Confianza -->
-      <div class="bg-zinc-800 p-6 rounded-xl shadow-lg hover:bg-zinc-700 cursor-pointer transition-colors border border-zinc-700">
+      <div class="bg-zinc-600 p-6 rounded-xl shadow-lg hover:bg-zinc-700 cursor-pointer transition-colors border border-zinc-700">
         <div class="text-rose-400 text-3xl mb-3">🎯</div>
         <h2 class="text-lg font-semibold mb-2">Intervalos de Confianza</h2>
         <p class="text-sm text-zinc-400">Estimación de parámetros poblacionales</p>
@@ -86,7 +85,7 @@ HomeView.vue
       </div>
 
       <!-- Historial de Cálculos -->
-      <div class="bg-zinc-800 p-6 rounded-xl shadow-lg hover:bg-zinc-700 cursor-pointer transition-colors border border-zinc-700">
+      <div class="bg-zinc-600 p-6 rounded-xl shadow-lg hover:bg-zinc-700 cursor-pointer transition-colors border border-zinc-700">
         <div class="text-red-400 text-3xl mb-3">📝</div>
         <h2 class="text-lg font-semibold mb-2">Historial</h2>
         <p class="text-sm text-zinc-400">Registro completo de cálculos</p>
