@@ -5,6 +5,7 @@ import BernoulliView from '../views/BernoulliView.vue'
 import NormalView from '../views/NormalView.vue'
 import MultinomialView from '../views/MultinomialView.vue'
 import GibbsView from '../views/GibbsView.vue'
+import ExponencialView from '../views/ExponencialView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +16,7 @@ const router = createRouter({
     { path: '/normal', name: 'normal', component: NormalView },
     { path: '/multinomial', name: 'multinomial', component: MultinomialView },
     { path: '/gibbs', name: 'gibbs', component: GibbsView },
+    { path: '/exponencial', name: 'exponencial', component: ExponencialView },
   ],
 })
 

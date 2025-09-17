@@ -8,8 +8,8 @@ const navItems = ref([
   { name: 'Bernoulli', path: '/bernoulli' },
   { name: 'Multinomial', path: '/multinomial' },
   { name: 'Normal', path: '/normal-standard' },
-  // Aquí agregaremos más calculadoras en el futuro
-  // { name: 'Normal', path: '/normal' },
+  { name: 'Gibbs', path: '/gibbs' },
+  { name: 'Exponencial', path: '/exponencial' },
 ])
 </script>
 

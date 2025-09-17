@@ -26,3 +26,7 @@ export const calculateNormal = (params) => {
 export const calculateGibbs = (params) => {
   return apiClient.post('/gibbs/', params)
 }
+
+export const calculateExponencial = (params) => {
+  return apiClient.post('/exponencial/', params)
+}
