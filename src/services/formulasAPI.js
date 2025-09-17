@@ -1,4 +1,5 @@
-// Creamos una "instancia" de Axios con la configuración base.
+import axios from 'axios'
+
 const apiClient = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/formulas',
   headers: {
@@ -17,8 +18,11 @@ export const calculateBernoulli = (params) => {
 export const calculateMultinomial = (params) => {
   return apiClient.post('/multinomial/', params)
 }
-import axios from 'axios'
 
-export const calculateNormalStandard = (params) => {
+export const calculateNormal = (params) => {
   return apiClient.post('/normal-standard/', params)
+}
+
+export const calculateGibbs = (params) => {
+  return apiClient.post('/gibbs/', params)
 }

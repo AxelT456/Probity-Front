@@ -25,6 +25,18 @@
       >
         Ir a Multinomial
       </RouterLink>
+      <RouterLink
+        to="/normal"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+      >
+        Ir a Normal
+      </RouterLink>
+      <RouterLink
+        to="/gibbs"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+      >
+        Ir a Gibbs
+      </RouterLink>
     </div>
   </div>
 </template>

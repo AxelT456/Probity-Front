@@ -9,9 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import NormalStandardForm from '@/components/formulas/NormalStandardForm.vue'
-import NormalStandardChart from '@/components/charts/NormalStandardChart.vue'
-import { calculateNormalStandard } from '@/services/formulasAPI'
+import NormalForm from '@/components/formulas/NormalForm.vue'
+import NormalChart from '@/components/charts/NormalChart.vue'
+import { calculateNormal } from '@/services/formulasAPI'
 
 const apiResult = ref(null)
 const isLoading = ref(false)
@@ -22,7 +22,7 @@ async function handleCalculate(formData) {
   apiResult.value = null
   apiError.value = null
   try {
-    const response = await calculateNormalStandard(formData)
+    const response = await calculateNormal(formData)
     apiResult.value = response.data
   } catch (error) {
     apiError.value = error
@@ -36,9 +36,10 @@ async function handleCalculate(formData) {
 <template>
   <div class="container mx-auto p-4 space-y-6">
     <div class="text-center">
-      <h1 class="text-3xl font-bold">Distribución Normal Estándar</h1>
+      <h1 class="text-3xl font-bold">Distribución Normal General</h1>
       <p class="text-muted-foreground">
-        Calcula los valores de densidad (PDF) y probabilidad acumulada (CDF) para una puntuación Z.
+        Calcula la PDF y CDF para un valor (x) en una distribución normal definida por su media (μ)
+        y desviación estándar (σ).
       </p>
     </div>
 
@@ -49,7 +50,7 @@ async function handleCalculate(formData) {
             <CardTitle>Parámetros</CardTitle>
           </CardHeader>
           <CardContent>
-            <NormalStandardForm @calculate="handleCalculate" />
+            <NormalForm @calculate="handleCalculate" />
           </CardContent>
           <CardFooter>
             <Button form="normal-form" type="submit" class="w-full">Calcular</Button>
@@ -59,9 +60,9 @@ async function handleCalculate(formData) {
         <Card v-if="apiResult || isLoading || apiError">
           <CardHeader>
             <CardTitle>Resultados Numéricos</CardTitle>
-            <CardDescription v-if="apiResult"
-              >Para Z = {{ apiResult.metadata.parameters.z_score }}</CardDescription
-            >
+            <CardDescription v-if="apiResult">
+              Para x = {{ apiResult.metadata.parameters.x_value }}
+            </CardDescription>
           </CardHeader>
           <CardContent class="space-y-4">
             <p v-if="isLoading" class="text-center">Calculando...</p>
@@ -70,13 +71,13 @@ async function handleCalculate(formData) {
               <div class="flex justify-between">
                 <span class="text-muted-foreground">Valor PDF:</span>
                 <span class="font-mono font-semibold">{{
-                  apiResult.result.pdf_at_z.toFixed(4)
+                  apiResult.result.pdf_at_x.toFixed(4)
                 }}</span>
               </div>
               <div class="flex justify-between">
                 <span class="text-muted-foreground">Valor CDF (Área):</span>
                 <span class="font-mono font-semibold">{{
-                  apiResult.result.cdf_at_z.toFixed(4)
+                  apiResult.result.cdf_at_x.toFixed(4)
                 }}</span>
               </div>
             </div>
@@ -92,12 +93,12 @@ async function handleCalculate(formData) {
           <CardContent class="pt-6">
             <div v-if="isLoading" class="text-center">Cargando gráfico... ⏳</div>
             <div v-if="apiError" class="text-center text-red-500">Error al cargar los datos.</div>
-            <NormalStandardChart
+            <NormalChart
               v-if="apiResult && apiResult.graph_data"
               :chart-data="apiResult.graph_data"
             />
             <div v-else class="text-center text-gray-500 h-full flex items-center justify-center">
-              <p>Ingresa una puntuación Z y presiona "Calcular" para generar el gráfico.</p>
+              <p>Ingresa los parámetros y presiona "Calcular" para generar el gráfico.</p>
             </div>
           </CardContent>
         </Card>

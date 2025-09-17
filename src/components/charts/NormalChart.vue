@@ -15,10 +15,7 @@ import {
 ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale)
 
 const props = defineProps({
-  chartData: {
-    type: Object,
-    required: true,
-  },
+  chartData: { type: Object, required: true },
 })
 
 const dataForRender = computed(() => {
@@ -33,8 +30,7 @@ const dataForRender = computed(() => {
         type: 'line',
         label: pdfData.label,
         data: pdfData.y,
-        borderColor: '#3b82f6', // Azul
-        backgroundColor: '#3b82f6',
+        borderColor: '#3b82f6',
         yAxisID: 'y-pdf',
         pointRadius: 0,
         tension: 0.1,
@@ -43,26 +39,27 @@ const dataForRender = computed(() => {
         type: 'line',
         label: cdfData.label,
         data: cdfData.y,
-        borderColor: '#f97316', // Naranja
-        backgroundColor: '#f97316',
+        borderColor: '#f97316',
         yAxisID: 'y-cdf',
         pointRadius: 0,
         tension: 0.1,
       },
+      // Marcador en la curva PDF
       {
         type: 'scatter',
-        label: `Punto Z (PDF)`,
-        data: [{ x: marker.z, y: marker.pdf }],
-        backgroundColor: '#ef4444', // Rojo
+        label: 'Punto X (PDF)',
+        data: [{ x: marker.x, y: marker.pdf }], // CAMBIO: marker.x
+        backgroundColor: '#ef4444',
         yAxisID: 'y-pdf',
         pointRadius: 6,
         pointHoverRadius: 8,
       },
+      // Marcador en la curva CDF
       {
         type: 'scatter',
-        label: `Punto Z (CDF)`,
-        data: [{ x: marker.z, y: marker.cdf }],
-        backgroundColor: '#ef4444', // Rojo
+        label: 'Punto X (CDF)',
+        data: [{ x: marker.x, y: marker.cdf }], // CAMBIO: marker.x
+        backgroundColor: '#ef4444',
         yAxisID: 'y-cdf',
         pointRadius: 6,
         pointHoverRadius: 8,
@@ -74,15 +71,9 @@ const dataForRender = computed(() => {
 const chartOptions = computed(() => ({
   responsive: true,
   maintainAspectRatio: false,
-  interaction: {
-    mode: 'index',
-    intersect: false,
-  },
+  interaction: { mode: 'index', intersect: false },
   plugins: {
-    title: {
-      display: true,
-      text: props.chartData.title,
-    },
+    title: { display: true, text: props.chartData.title },
     tooltip: {
       callbacks: {
         label: function (context) {
@@ -97,31 +88,20 @@ const chartOptions = computed(() => ({
   scales: {
     x: {
       type: 'linear',
-      title: {
-        display: true,
-        text: 'Puntuación Z',
-      },
+      title: { display: true, text: 'Valor (x)' }, // CAMBIO: Etiqueta más genérica
     },
     'y-pdf': {
       type: 'linear',
       position: 'left',
-      title: {
-        display: true,
-        text: 'Densidad de Probabilidad (PDF)',
-      },
+      title: { display: true, text: 'Densidad de Probabilidad (PDF)' },
     },
     'y-cdf': {
       type: 'linear',
       position: 'right',
       min: 0,
       max: 1,
-      title: {
-        display: true,
-        text: 'Probabilidad Acumulada (CDF)',
-      },
-      grid: {
-        drawOnChartArea: false,
-      },
+      title: { display: true, text: 'Probabilidad Acumulada (CDF)' },
+      grid: { drawOnChartArea: false },
     },
   },
 }))
