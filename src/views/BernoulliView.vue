@@ -102,7 +102,7 @@ const chartOptions = ref({
 </script>
 
 <template>
-  <div class="min-h-screen bg-stone-50 p-6">
+  <div class="min-h-screen p-6">
     <div class="max-w-7xl mx-auto">
       <!-- Header -->
       <div class="mb-8 text-center">
@@ -256,6 +256,98 @@ const chartOptions = ref({
           </Card>
         </div>
       </div>
+
+<!-- Sección Informativa sobre Distribución de Bernoulli -->
+<div class="mt-8 bg-white rounded-xl border border-stone-200 card-shadow overflow-hidden">
+  <div class="bg-stone-800 text-white px-6 py-4">
+    <h2 class="text-xl font-semibold flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      Acerca de la Distribución de Bernoulli
+    </h2>
+  </div>
+
+  <div class="p-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h3 class="text-lg font-semibold text-stone-800 mb-3 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          ¿Qué es la Distribución de Bernoulli?
+        </h3>
+        <p class="text-stone-600 mb-4">
+          La distribución de Bernoulli es un modelo de probabilidad discreta que representa un experimento aleatorio con <strong>solo dos resultados posibles</strong>:
+          éxito (1) o fracaso (0). Es la base de la distribución binomial y se utiliza para modelar eventos dicotómicos donde la probabilidad de éxito se denota como <strong>p</strong>.
+        </p>
+
+        <h3 class="text-lg font-semibold text-stone-800 mb-3 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+          Fórmula
+        </h3>
+        <div class="bg-stone-100 p-4 rounded-lg mb-4">
+          <p class="text-stone-800 font-mono text-center">
+            P(X = x) = p<sup>x</sup> · (1-p)<sup>1-x</sup> &nbsp;&nbsp;para x ∈ {0, 1}
+          </p>
+        </div>
+        <p class="text-stone-600 text-sm">
+          Donde: <strong>p</strong> es la probabilidad de éxito, <strong>x=1</strong> representa éxito y <strong>x=0</strong> representa fracaso.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-stone-800 mb-3 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+          Aplicaciones Prácticas
+        </h3>
+        <ul class="text-stone-600 space-y-2 mb-4">
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Lanzamiento de moneda: Cara o cruz
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Encuestas binarias: Sí/No, A favor/En contra
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Control de calidad: Producto defectuoso o no defectuoso
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Medicina: Paciente responde o no responde a un tratamiento
+          </li>
+        </ul>
+
+        <h3 class="text-lg font-semibold text-stone-800 mb-3 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+          </svg>
+          Interpretación de Resultados
+        </h3>
+        <p class="text-stone-600">
+          En la gráfica de barras, la <strong>altura de cada barra</strong> representa la probabilidad de cada resultado.
+          La <strong>barra de éxito (1)</strong> muestra la probabilidad <strong>p</strong>, mientras que la
+          <strong>barra de fracaso (0)</strong> muestra la probabilidad <strong>1-p</strong>.
+          La suma de ambas probabilidades siempre es igual a 1.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 </template>

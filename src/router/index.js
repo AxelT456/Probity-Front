@@ -4,6 +4,8 @@ import BinomialView from '../views/BinomialView.vue'
 import BernoulliView from '../views/BernoulliView.vue'
 import NormalStandardView from '../views/NormalStandardView.vue'
 import MultinomialView from '@/views/MultinomialView.vue'
+import ExponencialView from '@/views/ExponencialView.vue'
+import GibbsView from '../views/GibbsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +35,13 @@ const router = createRouter({
       name: 'normal-standard',
       component: NormalStandardView,
     },
+    {
+      path: '/exponencial',
+      name: 'Exponencial',
+      component: ExponencialView,
+    },
+    { path: '/gibbs', name: 'gibbs', component: GibbsView },
+
   ],
 })
 

@@ -73,9 +73,17 @@ const data = {
       url: "/multinomial",
           },
 {
-      title: "Normal standard",
+      title: "Normal",
       url: "/normal-standard",
           },
+{
+      title: "Exponencial",
+      url: "/exponencial",
+    },
+{
+      title: "Gibbs",
+      url: "/gibbs",
+    },
   ],
 }
 </script>

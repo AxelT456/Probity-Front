@@ -29,7 +29,7 @@ async function handleCalculate(formData) {
 </script>
 
 <template>
-  <div class="min-h-screen bg-stone-50 p-6">
+  <div class="min-h-screen p-6">
     <div class="max-w-7xl mx-auto">
       <!-- Header -->
       <div class="mb-8 text-center">
@@ -156,6 +156,100 @@ async function handleCalculate(formData) {
             <div>
               <p class="text-sm text-stone-600">Varianza (σ²)</p>
               <p class="text-xl font-semibold text-stone-800">{{ apiResult.summary.variance }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección Informativa sobre Distribución Binomial -->
+      <div class="mt-8 bg-white rounded-xl border border-stone-200 card-shadow overflow-hidden">
+        <div class="bg-stone-800 text-white px-6 py-4">
+          <h2 class="text-xl font-semibold flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Acerca de la Distribución Binomial
+          </h2>
+        </div>
+
+        <div class="p-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="text-lg font-semibold text-stone-800 mb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                ¿Qué es la Distribución Binomial?
+              </h3>
+              <p class="text-stone-600 mb-4">
+                La distribución binomial es un modelo de probabilidad que describe el número de éxitos en una secuencia de <strong>n</strong> ensayos independientes,
+                cada uno con una probabilidad constante <strong>p</strong> de éxito. Es fundamental para experimentos con exactamente dos resultados posibles:
+                éxito o fracaso.
+              </p>
+
+              <h3 class="text-lg font-semibold text-stone-800 mb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                Fórmula
+              </h3>
+              <div class="bg-stone-100 p-4 rounded-lg mb-4">
+                <p class="text-stone-800 font-mono text-center">
+                  P(X = k) = C(n, k) · p<sup>k</sup> · (1-p)<sup>n-k</sup>
+                </p>
+              </div>
+              <p class="text-stone-600 text-sm">
+                Donde: <strong>C(n, k)</strong> es el coeficiente binomial, <strong>p</strong> es la probabilidad de éxito,
+                <strong>n</strong> es el número de ensayos, y <strong>k</strong> es el número de éxitos.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold text-stone-800 mb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+                Aplicaciones Prácticas
+              </h3>
+              <ul class="text-stone-600 space-y-2 mb-4">
+                <li class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Control de calidad: Número de defectos en un lote de producción
+                </li>
+                <li class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Investigación médica: Eficacia de tratamientos o medicamentos
+                </li>
+                <li class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Estudios de mercado: Tasa de respuesta a campañas publicitarias
+                </li>
+                <li class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Genética: Herencia de características dominantes/recesivas
+                </li>
+              </ul>
+
+              <h3 class="text-lg font-semibold text-stone-800 mb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-stone-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                </svg>
+                Interpretación de Resultados
+              </h3>
+              <p class="text-stone-600">
+                La gráfica muestra la probabilidad de obtener diferentes números de éxitos.
+                <strong>Picos más altos</strong> indican resultados más probables, mientras que
+                <strong>áreas bajo la curva</strong> representan probabilidades acumuladas.
+                La forma de la distribución depende de los valores de <strong>n</strong> y <strong>p</strong>.
+              </p>
             </div>
           </div>
         </div>
