@@ -25,6 +25,44 @@ async function handleCalculate(formData) {
     isLoading.value = false
   }
 }
+
+// Chatbot functionality
+const message = ref("")
+const messages = ref([])
+
+const sendMessage = async () => {
+  if (!message.value.trim()) return
+
+  // Agregar mensaje del usuario
+  messages.value.push({ sender: "user", text: message.value })
+
+  // Guardar temporalmente el texto
+  const userMessage = message.value
+  message.value = ""
+
+  try {
+    const response = await fetch("http://localhost:8000/api/chat/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userMessage }),
+    })
+
+    const data = await response.json()
+
+    // Agregar respuesta del chatbot
+    messages.value.push({
+      sender: "bot",
+      text: data.reply || "Error en la respuesta",
+    })
+  } catch (error) {
+    console.error(error)
+    messages.value.push({
+      sender: "bot",
+      text: "Error al conectar con el servidor.",
+    })
+  }
+}
+
 </script>
 
 <template>
@@ -217,6 +255,92 @@ async function handleCalculate(formData) {
       </div>
     </div>
   </div>
+
+<!-- Chatbot para Bernoulli -->
+      <div class="mt-8 bg-white rounded-xl border border-stone-200 card-shadow overflow-hidden">
+        <div class="bg-stone-800 text-white px-6 py-4">
+          <h2 class="text-xl font-semibold flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M极6 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+            Asistente de Gibbs
+          </h2>
+        </div>
+
+        <div class="p-4">
+          <!-- Historial de mensajes -->
+          <div class="h-64 overflow-y-auto mb-4 space-y-3 p-2 bg-stone-50 rounded-lg">
+            <div v-if="messages.length === 0" class="text-center text-stone-500 py-8">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2极8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+              <p>Envía un mensaje para comenzar la conversación</p>
+            </div>
+
+            <div
+              v-for="(msg, index) in messages"
+              :key="index"
+              :class="msg.sender === 'user' ? 'flex justify-end' : 'flex justify-start'"
+            >
+              <div
+                :class="[
+                  'max-w-[80%] rounded-lg px-4 py-2',
+                  msg.sender === 'user'
+                    ? 'bg-stone-800 text-white'
+                    : 'bg-stone-100 text-stone-800 border border-stone-200'
+                ]"
+              >
+                <p class="whitespace-pre-wrap">{{ msg.text }}</p>
+                <p class="text-xs mt-1 opacity-70">
+                  {{ msg.sender === 'user' ? 'Tú' : 'Asistente' }} •
+                  {{ new Date().toLocaleTimeString() }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Área de entrada -->
+          <div class="flex items-center gap-2">
+            <input
+              v-model="message"
+              type="text"
+              placeholder="Escribe tu pregunta sobre distribución de Bernoulli..."
+              class="flex-grow px-4 py-3 rounded-lg border border-stone-300 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:border-stone-500"
+              @keyup.enter="sendMessage"
+            />
+            <button
+              @click="sendMessage"
+              :disabled="!message.trim()"
+              class="bg-stone-800 text-white px-4 py-3 rounded-lg hover:bg-stone-700 transition disabled:bg-stone-400 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+              Enviar
+            </button>
+          </div>
+
+          <!-- Ejemplos de preguntas -->
+          <div class="mt-3">
+            <p class="text-sm text-stone-600 mb-2">Ejemplos de preguntas:</p>
+            <div class="flex flex-wrap gap-2">
+              <button
+                v-for="(example, index) in [
+                  '¿Qué es la distribución de Bernoulli?',
+                  '¿Cómo interpreto los resultados de Bernoulli?',
+                  '¿Cuáles son las aplicaciones prácticas de Bernoulli?'
+                ]"
+                :key="index"
+                @click="message = example; sendMessage()"
+                class="text-xs bg-stone-100 text-stone-700 px-3 py-1 rounded-full hover:bg-stone-200 transition border border-stone-200"
+              >
+                {{ example }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 </div>
   </div>
 </template>
