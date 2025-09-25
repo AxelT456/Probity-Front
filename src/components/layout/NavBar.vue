@@ -10,6 +10,7 @@ const navItems = ref([
   { name: 'Normal', path: '/normal-standard' },
   { name: 'Gibbs', path: '/gibbs' },
   { name: 'Exponencial', path: '/exponencial' },
+  { name: 'Normal Bivariada', path: '/bivariate-normal' },
 ])
 </script>
 
