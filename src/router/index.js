@@ -6,6 +6,7 @@ import NormalStandardView from '../views/NormalStandardView.vue'
 import MultinomialView from '@/views/MultinomialView.vue'
 import ExponencialView from '@/views/ExponencialView.vue'
 import GibbsView from '../views/GibbsView.vue'
+import BivariableNormalView from '../views/BivariableNormalView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,7 +42,11 @@ const router = createRouter({
       component: ExponencialView,
     },
     { path: '/gibbs', name: 'gibbs', component: GibbsView },
-
+    {
+      path: '/bivariate-normal',
+      name: 'bivariate-normal',
+      component: BivariableNormalView,
+    },
   ],
 })
 

@@ -84,6 +84,10 @@ const data = {
       title: "Gibbs",
       url: "/gibbs",
     },
+    {
+      title: "Bivariate normal",
+      url: "/bivariate-normal"
+    }
   ],
 }
 </script>
