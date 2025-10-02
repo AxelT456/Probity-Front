@@ -21,7 +21,7 @@ function handleSubmit() {
 <template>
   <form id="binomial-form" @submit.prevent="handleSubmit" class="space-y-4">
     <div class="flex items-center justify-between">
-      <Label for="n" class="text-sm text-muted-foreground">Número de ensayos (n)</Label>
+      <Label for="n" class="text-sm text-muted-foreground">Tamaño de muestra (n)</Label>
       <Input
         id="n"
         v-model="n"
