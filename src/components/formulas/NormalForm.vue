@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
-// Valores iniciales de ejemplo
+// Valores iniciales de ejemplo para la Normal General
 const mean = ref(100)
 const std_dev = ref(15)
 const x_value = ref(115)
@@ -11,7 +11,7 @@ const x_value = ref(115)
 const emit = defineEmits(['calculate'])
 
 function handleSubmit() {
-  // Validación simple en el frontend
+  // Validación en el frontend antes de enviar
   if (std_dev.value <= 0) {
     alert('La desviación estándar debe ser un número positivo.')
     return
@@ -19,7 +19,7 @@ function handleSubmit() {
   emit('calculate', {
     mean: mean.value,
     std_dev: std_dev.value,
-    x_value: x_value.value,
+    x_value: x_value.value
   })
 }
 </script>
@@ -65,3 +65,4 @@ function handleSubmit() {
     </div>
   </form>
 </template>
+

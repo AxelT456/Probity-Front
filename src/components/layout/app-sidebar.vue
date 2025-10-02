@@ -3,47 +3,37 @@ app-sidebar.vue
 <template>
   <div class="flex min-h-screen">
     <!-- Sidebar -->
-    <aside class="w-64 bg-sidebar bg-stone-900">
-      <div class="p-4  ">
+    <aside class="w-64 bg-stone-900 min-h-screen">
+      <div class="p-4 border-b border-stone-800">
         <div class="flex items-center gap-3">
-          <div class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+          <div class="bg-stone-800 text-white flex aspect-square size-8 items-center justify-center rounded-lg">
             <GalleryVerticalEnd class="size-4" />
           </div>
           <div class="flex flex-col gap-0.5 leading-none text-white">
             <span class="font-medium">Probity</span>
-            <span class="text-sm text-muted-foreground">v1.0.0</span>
+            <span class="text-sm text-stone-400">v1.0.0</span>
           </div>
         </div>
       </div>
 
       <nav class="p-4">
-        <ul class="space-y-2">
+        <ul class="space-y-1">
           <li v-for="item in data.navMain" :key="item.title">
-            <a :href="item.url" class="block font-medium text-white hover:bg-color-neutral-500 py-2">
+            <router-link
+              :to="item.url"
+              class="block px-3 py-2 rounded-md text-sm font-medium text-stone-300 hover:bg-stone-800 hover:text-white transition-colors"
+              active-class="bg-stone-800 text-white"
+            >
               {{ item.title }}
-            </a>
-            <ul v-if="item.items?.length" class="ml-4 mt-1 space-y-1 pl-4">
-              <li v-for="subItem in item.items" :key="subItem.title">
-                <a
-                  :href="subItem.url"
-                  :class="[
-                    'block text-sm py-1 text-sidebar-foreground/70 hover:bg-color-neutral-500 transition-colors',
-                    subItem.isActive ? 'text-sidebar-primary font-medium' : ''
-                  ]"
-                >
-                  {{ subItem.title }}
-                </a>
-              </li>
-            </ul>
+            </router-link>
           </li>
         </ul>
       </nav>
     </aside>
 
     <!-- Main content -->
-    <div class="flex-1 flex flex-col">
-      <Navbar />
-      <main class="flex-1 p-6">
+    <div class="flex-1">
+      <main class="p-6">
         <slot />
       </main>
     </div>
@@ -61,26 +51,26 @@ const data = {
     url: "/"
     },
     {
+      title: "Bernoulli",
+      url: "/bernoulli",
+    },
+    {
       title: "Binomial",
       url: "/binomial",
     },
     {
-      title: "Bernoulli",
-      url: "/bernoulli",
-          },
-{
       title: "Multinomial",
       url: "/multinomial",
-          },
-{
-      title: "Normal",
-      url: "/normal-standard",
-          },
-{
+    },
+    {
       title: "Exponencial",
       url: "/exponencial",
     },
-{
+    {
+      title: "Normal",
+      url: "/normal",
+    },
+    {
       title: "Gibbs",
       url: "/gibbs",
     },

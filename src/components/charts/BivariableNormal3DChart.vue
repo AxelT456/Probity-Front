@@ -16,7 +16,26 @@ const props = defineProps({
 })
 
 const chartOptions = computed(() => {
-  const { x_grid, y_grid, z_grid, title } = props.chartData
+  if (!props.chartData?.surface_3d) {
+    return {
+      title: {
+        text: 'Esperando datos...',
+        left: 'center',
+      }
+    }
+  }
+
+  const { x_grid, y_grid, z_grid, title } = props.chartData.surface_3d
+
+  // Verificar que tenemos todos los datos necesarios
+  if (!x_grid?.length || !y_grid?.length || !z_grid?.length) {
+    return {
+      title: {
+        text: 'Datos incompletos',
+        left: 'center',
+      }
+    }
+  }
 
   const data = []
   for (let i = 0; i < y_grid.length; i++) {
@@ -72,7 +91,17 @@ const chartOptions = computed(() => {
 </script>
 
 <template>
-  <v-chart class="chart" :option="chartOptions" autoresize />
+  <div class="h-full relative">
+    <v-chart class="chart" :option="chartOptions" autoresize />
+  </div>
+</template>
+
+<style scoped>
+.chart {
+  width: 100%;
+  height: 100%;
+}
+</style>
 </template>
 
 <style scoped>

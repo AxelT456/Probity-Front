@@ -19,12 +19,12 @@ function handleSubmit() {
 <template>
   <form id="bernoulli-form" @submit.prevent="handleSubmit" class="space-y-4">
     <div class="flex items-center justify-between">
-      <Label for="n">Número de ensayos (n)</Label>
+      <Label for="n">Tamaño de Muestra (n):</Label>
       <Input id="n" v-model="n" type="number" min="1" required class="w-24 text-right" />
     </div>
 
     <div class="flex items-center justify-between">
-      <Label for="p">Probabilidad de éxito (p)</Label>
+      <Label for="p">Probabilidad de éxito (p):</Label>
       <Input
         id="p"
         v-model="p"

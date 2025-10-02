@@ -14,5 +14,5 @@ LayoutWithSidebar.vue
 
 <script setup lang="ts">
 import AppSidebar from '@/components/layout/app-sidebar.vue'
-import Navbar from '@/components/layout/NavBar.vue' // Asegúrate de que esta ruta sea correcta
+import Navbar from '@/components/layout/NavBar.vue'
 </script>

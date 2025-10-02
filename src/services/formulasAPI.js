@@ -1,6 +1,8 @@
+import axios from 'axios'
+
 // Creamos una "instancia" de Axios con la configuración base.
 const apiClient = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api/formulas',
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -17,7 +19,10 @@ export const calculateBernoulli = (params) => {
 export const calculateMultinomial = (params) => {
   return apiClient.post('/multinomial/', params)
 }
-import axios from 'axios'
+
+export const calculateNormal = (params) => {
+  return apiClient.post('/normal-standard/', params)
+}
 
 export const calculateNormalStandard = (params) => {
   return apiClient.post('/normal-standard/', params)

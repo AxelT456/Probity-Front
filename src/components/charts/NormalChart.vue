@@ -19,6 +19,10 @@ const props = defineProps({
 })
 
 const dataForRender = computed(() => {
+  // Validación para evitar errores si los datos no llegan como se espera
+  if (!props.chartData || !props.chartData.datasets || !props.chartData.marker) {
+    return { labels: [], datasets: [] };
+  }
   const pdfData = props.chartData.datasets[0]
   const cdfData = props.chartData.datasets[1]
   const marker = props.chartData.marker
@@ -44,21 +48,19 @@ const dataForRender = computed(() => {
         pointRadius: 0,
         tension: 0.1,
       },
-      // Marcador en la curva PDF
       {
         type: 'scatter',
         label: 'Punto X (PDF)',
-        data: [{ x: marker.x, y: marker.pdf }], // CAMBIO: marker.x
+        data: [{ x: marker.x, y: marker.pdf }],
         backgroundColor: '#ef4444',
         yAxisID: 'y-pdf',
         pointRadius: 6,
         pointHoverRadius: 8,
       },
-      // Marcador en la curva CDF
       {
         type: 'scatter',
         label: 'Punto X (CDF)',
-        data: [{ x: marker.x, y: marker.cdf }], // CAMBIO: marker.x
+        data: [{ x: marker.x, y: marker.cdf }],
         backgroundColor: '#ef4444',
         yAxisID: 'y-cdf',
         pointRadius: 6,
@@ -88,7 +90,7 @@ const chartOptions = computed(() => ({
   scales: {
     x: {
       type: 'linear',
-      title: { display: true, text: 'Valor (x)' }, // CAMBIO: Etiqueta más genérica
+      title: { display: true, text: 'Valor (x)' },
     },
     'y-pdf': {
       type: 'linear',
@@ -112,3 +114,4 @@ const chartOptions = computed(() => ({
     <Line v-if="chartData && chartData.datasets" :data="dataForRender" :options="chartOptions" />
   </div>
 </template>
+

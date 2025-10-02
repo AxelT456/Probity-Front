@@ -4,11 +4,13 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import BivariableNormalForm from '@/components/formulas/BivariableNormalForm.vue'
 import BivariableNormal3DChart from '@/components/charts/BivariableNormal3DChart.vue'
+import BivariableNormalScatterChart from '@/components/charts/BivariableNormalScatterChart.vue'
 import { calculateBivariateNormal } from '@/services/formulasAPI'
 
 const apiResult = ref(null)
 const isLoading = ref(false)
 const apiError = ref(null)
+const activeTab = ref('3d') // Para controlar qué gráfico mostrar
 
 async function handleCalculate(formData) {
   isLoading.value = true
@@ -35,14 +37,13 @@ async function handleCalculate(formData) {
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="md:col-span-1">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 min-h-[calc(100vh-12rem)]">
+      <div class="md:col-span-1 h-fit">
         <Card>
           <CardHeader>
             <CardTitle>Parámetros de la Distribución</CardTitle>
           </CardHeader>
           <CardContent>
-            <!-- Se usa el nombre de componente correcto aquí -->
             <BivariableNormalForm @calculate="handleCalculate" />
           </CardContent>
           <CardFooter>
@@ -51,14 +52,90 @@ async function handleCalculate(formData) {
         </Card>
       </div>
 
-      <div class="md:col-span-2">
-        <Card class="h-full">
-          <CardHeader>
+      <div class="md:col-span-2 flex flex-col h-full">
+        <!-- Botones de selección de vista -->
+        <div class="flex space-x-2 mb-4">
+          <Button
+            :class="{ 'opacity-50': activeTab !== '3d' }"
+            @click="activeTab = '3d'"
+          >
+            Vista 3D
+          </Button>
+          <Button
+            :class="{ 'opacity-50': activeTab !== '2d' }"
+            @click="activeTab = '2d'"
+          >
+            Vista 2D (Dispersión)
+          </Button>
+        </div>
+
+        <!-- Visualización 3D -->
+        <!-- Visualización 3D -->
+        <Card class="flex-1" v-show="activeTab === '3d'">
+          <CardHeader class="pb-2">
             <CardTitle>Visualización de Densidad (3D)</CardTitle>
+          </CardHeader>
+          <CardContent class="h-[calc(100%-4rem)] overflow-hidden">
+            <div v-if="isLoading" class="h-full flex items-center justify-center">
+              Generando superficie 3D... ⏳
+            </div>
+            <div
+              v-else-if="apiError"
+              class="h-full flex items-center justify-center text-red-500"
+            >
+              Error al cargar los datos.
+            </div>
+            <div v-else-if="apiResult?.graph_data?.surface_3d" class="h-full">
+              <BivariableNormal3DChart
+                :chart-data="apiResult.graph_data"
+                class="h-full w-full"
+              />
+            </div>
+            <div
+              v-else
+              class="h-full flex items-center justify-center text-gray-500"
+            >
+              <p>Configura los parámetros y presiona "Generar Gráfico".</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <!-- Visualización 2D -->
+        <Card class="flex-1" v-show="activeTab === '2d'">
+          <CardHeader class="pb-2">
+            <CardTitle>Gráfico de Dispersión (2D)</CardTitle>
+          </CardHeader>
+          <CardContent class="h-[calc(100%-4rem)] overflow-hidden">
+            <div v-if="isLoading" class="h-full flex items-center justify-center">
+              Generando gráfico de dispersión... ⏳
+            </div>
+            <div
+              v-else-if="apiError"
+              class="h-full flex items-center justify-center text-red-500"
+            >
+              Error al cargar los datos.
+            </div>
+            <div v-else-if="apiResult?.graph_data?.scatter_2d" class="h-full">
+              <BivariableNormalScatterChart
+                :chart-data="apiResult.graph_data"
+                class="h-full w-full"
+              />
+            </div>
+            <div
+              v-else
+              class="h-full flex items-center justify-center text-gray-500"
+            >
+              <p>Configura los parámetros y presiona "Generar Gráfico".</p>
+            </div>
+          </CardContent>
+        </Card>        <!-- Visualización 2D -->
+        <Card class="h-full" v-show="activeTab === '2d'">
+          <CardHeader>
+            <CardTitle>Gráfico de Dispersión (2D)</CardTitle>
           </CardHeader>
           <CardContent class="pt-6">
             <div v-if="isLoading" class="text-center h-[500px] flex items-center justify-center">
-              Generando superficie 3D... ⏳
+              Generando gráfico de dispersión... ⏳
             </div>
             <div
               v-else-if="apiError"
@@ -66,8 +143,11 @@ async function handleCalculate(formData) {
             >
               Error al cargar los datos.
             </div>
-            <!-- Y se usa el nombre de componente correcto aquí también -->
-            <BivariableNormal3DChart v-else-if="apiResult" :chart-data="apiResult.graph_data" />
+                        <BivariableNormalScatterChart
+              v-else-if="apiResult?.graph_data?.scatter_2d"
+              :chart-data="apiResult.graph_data"
+              class="h-full"
+            />
             <div
               v-else
               class="text-center text-gray-500 h-[500px] flex items-center justify-center"
